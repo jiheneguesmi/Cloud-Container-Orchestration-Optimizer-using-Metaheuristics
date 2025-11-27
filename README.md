@@ -1,45 +1,45 @@
 Cloud Container Orchestration Optimizer
-Project Overview
+1. Project Overview
 
-A complete optimization framework for solving the Cloud Container Orchestration Problem (CCOP) using heuristics and metaheuristics.
-This project applies operations research and advanced optimization techniques to modern cloud orchestration challenges.
+A framework for solving the Cloud Container Orchestration Problem (CCOP) using heuristics and metaheuristics.
+It applies operations research and cloud optimization techniques to efficiently deploy containers on physical servers.
 
-Key Features
+2. Key Features
 
-Multiple optimization approaches: Heuristic, Tabu Search, Artificial Immune System
+Heuristic + Metaheuristics (Tabu Search, Artificial Immune System)
 
-Realistic cloud constraints: resource limits, anti-affinity rules, communication costs
+Realistic cloud constraints (resource limits, anti-affinity, communication costs)
 
-Comprehensive analysis with comparisons and visualizations
+Performance comparison & visualizations
 
-Modular codebase allowing easy extension and customization
+Modular architecture for easy customization
 
-Project Structure
+3. Project Structure
 src/
-├── models.py              # Data classes: Container, Server, ProblemInstance
-├── heuristics.py          # Best-Fit with Communication Awareness algorithm
+├── models.py              # Container, Server, ProblemInstance classes
+├── heuristics.py          # Best-Fit with Communication Awareness heuristic
 ├── metaheuristics.py      # Tabu Search & Artificial Immune System
-├── utils.py               # Analysis, visualization, utilities
-├── main.py                # Main runner & method comparison
+├── utils.py               # Evaluation and visualization utilities
+├── main.py                # Execution and comparison script
 └── requirements.txt       # Dependencies
 
-Performance Highlights
+4. Performance Highlights
 Method	Total Cost	Servers Used	Time (s)	Improvement
 Heuristic	13,671.82	8 / 10	0.12	Baseline
 Tabu Search	7,051.76	6 / 10	7.59	-48.4%
 Immune System	9,172.56	8 / 10	5.00	-32.9%
-Installation
-1. Clone the repository
+5. Installation
+Clone the repository
 git clone <repository-url>
 cd src
 
-2. Install dependencies
+Install dependencies
 pip install -r requirements.txt
 
-3. Run the optimization
+Run the project
 python main.py
 
-Dependencies
+6. Dependencies
 
 Python 3.7+
 
@@ -49,61 +49,56 @@ matplotlib
 
 tqdm
 
-Problem Definition: CCOP
-
-Deploy N containers on M servers while optimizing:
-
+7. Problem Definition
 Objectives
 
-Minimizing server usage
+Minimize:
 
-Minimizing inter-server communication costs
+Number of servers used
 
-Reducing load imbalance
+Inter-server communication costs
+
+Load imbalance
 
 Constraints
 
-CPU, memory, and storage capacities
+CPU, memory, storage capacities
 
-Anti-affinity rules
+Anti-affinity constraints
 
 Affinity preferences
 
-Implemented Algorithms
-1. Best-Fit with Communication Awareness (Heuristic)
+8. Implemented Algorithms
+8.1 Best-Fit with Communication Awareness (Heuristic)
 
-Type: Constructive heuristic
+Constructive heuristic
 
-Combines resource utilization and communication cost
+Very fast execution (~0.1s)
 
-Execution time: around 0.1 seconds
+Produces feasible baseline solutions
 
-Use case: quick feasible solutions
+8.2 Enhanced Tabu Search
 
-2. Enhanced Tabu Search
+Single-solution metaheuristic
 
-Type: single-solution metaheuristic
+Tabu tenure, aspiration criteria, neighborhood exploration
 
-Features: short-term memory, aspiration criteria, neighborhood sampling
+Best-performing method
 
-Provides the best improvement (48.4%)
+8.3 Artificial Immune System
 
-Suitable for high-quality optimization
+Population-based metaheuristic
 
-3. Artificial Immune System
+Clonal selection, hypermutation, diversity maintenance
 
-Type: population-based, bio-inspired
+Balanced speed/quality
 
-Features: clonal selection, hypermutation, diversity maintenance
-
-Balanced trade-off between speed and quality
-
-Usage Examples
-Run Full Comparison
+9. Usage Examples
+Run all algorithms
 from main import main
 main()
 
-Custom Problem Instance
+Custom problem instance
 from models import ProblemInstance
 from heuristics import HeuristicSolver
 
@@ -111,56 +106,59 @@ problem = ProblemInstance(num_containers=100, num_servers=15)
 solver = HeuristicSolver(problem)
 solution = solver.best_fit_communication_aware()
 
-Configure Metaheuristics
+Configure metaheuristics
 from metaheuristics import EnhancedTabuSearch, ArtificialImmuneCloudOptimizer
 
-tabu_solver = EnhancedTabuSearch(problem, max_iterations=1000, tabu_tenure=50)
+tabu_solver = EnhancedTabuSearch(
+    problem, max_iterations=1000, tabu_tenure=50
+)
 
 immune_solver = ArtificialImmuneCloudOptimizer(
     problem, population_size=100, max_generations=300
 )
 
-Output and Analysis
+10. Output and Analysis
 
-The project generates:
+The framework generates:
 
-Comparative results across all methods
+Method comparison reports
 
-Convergence curves for metaheuristics
+Convergence curves
 
-Diversity metrics for population algorithms
+Population diversity metrics
 
-Resource utilization analysis
+Resource utilization plots
 
-Constraint satisfaction reports
+Constraint satisfaction checks
 
-Advanced Features
-Cost Function Components
+11. Cost Function
+
+The total cost is composed of:
 
 Server usage cost (weight: 1000)
 
 Communication cost (weight: 1)
 
-Load imbalance (weight: 50)
+Load imbalance cost (weight: 50)
 
-Constraint penalties (weight: 1000)
+Penalties for constraint violations (weight: 1000)
 
-Constraint Handling
+12. Constraint Handling
 
 Hard constraints: capacities, anti-affinity
 
 Soft constraints: affinity preferences, load balancing
 
-Feasibility checks at every iteration
+Feasibility checks at each iteration
 
-Theoretical Background
+13. Theoretical Background
 
 This project illustrates:
 
-Operations research applied to cloud computing
+Operations research applied to cloud systems
 
-Combinatorial optimization techniques
+Combinatorial optimization modeling
 
-Metaheuristic design and implementation
+Metaheuristic algorithm design
 
-Performance analysis of optimization algorithms
+Rigorous performance evaluation
