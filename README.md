@@ -10,9 +10,9 @@ Heuristic + Metaheuristics (Tabu Search, Artificial Immune System)
 
 Realistic cloud constraints (resource limits, anti-affinity, communication costs)
 
-Performance comparison & visualizations
+Performance comparison and visualizations
 
-Modular architecture for easy customization
+Modular architecture for easy extension and customization
 
 3. Project Structure
 src/
@@ -81,7 +81,9 @@ Produces feasible baseline solutions
 
 Single-solution metaheuristic
 
-Tabu tenure, aspiration criteria, neighborhood exploration
+Tabu tenure and aspiration criteria
+
+Neighborhood exploration
 
 Best-performing method
 
@@ -89,9 +91,11 @@ Best-performing method
 
 Population-based metaheuristic
 
-Clonal selection, hypermutation, diversity maintenance
+Clonal selection and hypermutation
 
-Balanced speed/quality
+Diversity preservation
+
+Balanced speed and solution quality
 
 9. Usage Examples
 Run all algorithms
@@ -133,7 +137,7 @@ Constraint satisfaction checks
 
 11. Cost Function
 
-The total cost is composed of:
+The total cost includes:
 
 Server usage cost (weight: 1000)
 
@@ -149,11 +153,11 @@ Hard constraints: capacities, anti-affinity
 
 Soft constraints: affinity preferences, load balancing
 
-Feasibility checks at each iteration
+Feasibility checks performed at each iteration
 
 13. Theoretical Background
 
-This project illustrates:
+This project demonstrates:
 
 Operations research applied to cloud systems
 
