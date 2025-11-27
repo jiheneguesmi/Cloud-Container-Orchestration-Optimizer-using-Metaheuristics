@@ -1,45 +1,46 @@
 Cloud Container Orchestration Optimizer
 Project Overview
-A comprehensive optimization framework for solving the Cloud Container Orchestration Problem (CCOP) using advanced heuristics and metaheuristics. This project demonstrates the application of operations research techniques to modern cloud computing challenges.
+
+A complete optimization framework for solving the Cloud Container Orchestration Problem (CCOP) using heuristics and metaheuristics.
+This project applies operations research and advanced optimization techniques to modern cloud orchestration challenges.
 
 Key Features
-Multiple Optimization Approaches: Heuristic, Tabu Search, and Artificial Immune System
 
-Realistic Cloud Constraints: Resource limits, anti-affinity, communication costs
+Multiple optimization approaches: Heuristic, Tabu Search, Artificial Immune System
 
-Comprehensive Analysis: Performance comparison and visualization
+Realistic cloud constraints: resource limits, anti-affinity rules, communication costs
 
-Modular Design: Easy to extend and customize
+Comprehensive analysis with comparisons and visualizations
+
+Modular codebase allowing easy extension and customization
 
 Project Structure
-text
 src/
 ├── models.py              # Data classes: Container, Server, ProblemInstance
 ├── heuristics.py          # Best-Fit with Communication Awareness algorithm
-├── metaheuristics.py      # Tabu Search and Artificial Immune System
-├── utils.py               # Solution analysis, visualization, and utilities
-├── main.py                # Main execution and comparison script
-└── requirements.txt       # Python dependencies
+├── metaheuristics.py      # Tabu Search & Artificial Immune System
+├── utils.py               # Analysis, visualization, utilities
+├── main.py                # Main runner & method comparison
+└── requirements.txt       # Dependencies
+
 Performance Highlights
 Method	Total Cost	Servers Used	Time (s)	Improvement
-Heuristic	13,671.82	8/10	0.12	Baseline
-Tabu Search	7,051.76	6/10	7.59	-48.4%
-Immune System	9,172.56	8/10	5.00	-32.9%
+Heuristic	13,671.82	8 / 10	0.12	Baseline
+Tabu Search	7,051.76	6 / 10	7.59	-48.4%
+Immune System	9,172.56	8 / 10	5.00	-32.9%
 Installation
-Clone the repository
-
-bash
+1. Clone the repository
 git clone <repository-url>
 cd src
-Install dependencies
 
-bash
+2. Install dependencies
 pip install -r requirements.txt
-Run the optimization
 
-bash
+3. Run the optimization
 python main.py
+
 Dependencies
+
 Python 3.7+
 
 numpy
@@ -48,119 +49,117 @@ matplotlib
 
 tqdm
 
-Problem Definition
-The CCOP Problem
-Deploy N containers on M physical servers while:
+Problem Definition: CCOP
 
-Minimizing:
+Deploy N containers on M servers while optimizing:
 
-Number of servers used
+Objectives
 
-Inter-server communication costs
+Minimizing server usage
 
-Load imbalance
+Minimizing inter-server communication costs
 
-Respecting:
+Reducing load imbalance
 
-CPU, memory, storage constraints
+Constraints
 
-Anti-affinity constraints (containers that must be separated)
+CPU, memory, and storage capacities
 
-Affinity preferences (containers that should be together)
+Anti-affinity rules
+
+Affinity preferences
 
 Implemented Algorithms
 1. Best-Fit with Communication Awareness (Heuristic)
+
 Type: Constructive heuristic
 
-Strategy: Combines resource utilization and communication costs
+Combines resource utilization and communication cost
 
-Speed: ~0.1 seconds
+Execution time: around 0.1 seconds
 
-Use case: Quick feasible solutions
+Use case: quick feasible solutions
 
-2. Enhanced Tabu Search (Metaheuristic)
-Type: Single-solution metaheuristic
+2. Enhanced Tabu Search
 
-Features: Short-term memory, aspiration criteria, neighborhood sampling
+Type: single-solution metaheuristic
 
-Performance: Best results (48.4% improvement)
+Features: short-term memory, aspiration criteria, neighborhood sampling
 
-Use case: High-quality optimization
+Provides the best improvement (48.4%)
 
-3. Artificial Immune System (Metaheuristic)
-Type: Population-based bio-inspired algorithm
+Suitable for high-quality optimization
 
-Features: Clonal selection, hypermutation, diversity maintenance
+3. Artificial Immune System
 
-Performance: Good speed/quality balance
+Type: population-based, bio-inspired
 
-Use case: Balanced optimization approach
+Features: clonal selection, hypermutation, diversity maintenance
+
+Balanced trade-off between speed and quality
 
 Usage Examples
-Basic Execution
-python
+Run Full Comparison
 from main import main
-main()  # Runs complete comparison
+main()
+
 Custom Problem Instance
-python
 from models import ProblemInstance
 from heuristics import HeuristicSolver
 
-# Create custom problem
 problem = ProblemInstance(num_containers=100, num_servers=15)
-
-# Solve with heuristic
 solver = HeuristicSolver(problem)
 solution = solver.best_fit_communication_aware()
-Algorithm Configuration
-python
+
+Configure Metaheuristics
 from metaheuristics import EnhancedTabuSearch, ArtificialImmuneCloudOptimizer
 
-# Configure Tabu Search
 tabu_solver = EnhancedTabuSearch(problem, max_iterations=1000, tabu_tenure=50)
 
-# Configure Immune System
 immune_solver = ArtificialImmuneCloudOptimizer(
     problem, population_size=100, max_generations=300
 )
+
 Output and Analysis
+
 The project generates:
 
-Comparative results between all methods
+Comparative results across all methods
 
-Convergence plots for metaheuristics
+Convergence curves for metaheuristics
 
-Diversity metrics for population-based algorithms
+Diversity metrics for population algorithms
 
 Resource utilization analysis
 
 Constraint satisfaction reports
 
 Advanced Features
-Cost Function
-The multi-criteria cost function combines:
+Cost Function Components
 
-Server usage costs (weight: 1000)
+Server usage cost (weight: 1000)
 
-Communication costs (weight: 1)
+Communication cost (weight: 1)
 
 Load imbalance (weight: 50)
 
 Constraint penalties (weight: 1000)
 
 Constraint Handling
-Hard constraints: Resource capacities, anti-affinity
 
-Soft constraints: Affinity preferences, load balancing
+Hard constraints: capacities, anti-affinity
 
-Feasibility checks in all solution generation
+Soft constraints: affinity preferences, load balancing
+
+Feasibility checks at every iteration
 
 Theoretical Background
-This project demonstrates:
 
-Operations Research principles applied to cloud computing
+This project illustrates:
 
-Combinatorial Optimization techniques
+Operations research applied to cloud computing
+
+Combinatorial optimization techniques
 
 Metaheuristic design and implementation
 
